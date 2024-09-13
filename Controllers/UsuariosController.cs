@@ -7,11 +7,11 @@ namespace Farmacias.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresasController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public EmpresasController(IMediator mediator)
+        public UsuariosController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -24,31 +24,31 @@ namespace Farmacias.Controllers
 
         [Authorize(Roles = "Root, Administrador")]
         [ServiceFilter(typeof(FiltersMid))]
-        [HttpGet("GetEmpresas")]
-        public string GetEmpresas()
+        [HttpGet("GetUsuarios")]
+        public string GetUsuarios()
+        {
+            return "Running";
+        }
+
+        [Authorize(Roles = "Root, Administrador,Usuario")]
+        [ServiceFilter(typeof(FiltersMid))]
+        [HttpGet("GetUsuario")]
+        public string GetUsuario()
         {
             return "Running";
         }
 
         [Authorize(Roles = "Root, Administrador")]
         [ServiceFilter(typeof(FiltersMid))]
-        [HttpGet("GetEmpresa")]
-        public string GetEmpresa()
-        {
-            return "Running";
-        }
-
-        [Authorize(Roles = "Root")]
-        [ServiceFilter(typeof(FiltersMid))]
-        [HttpPost("PostAgregarEmpresa")]
+        [HttpPost("PostAgregarUsuarios")]
         public string PostAgregarUsuarios()
         {
             return "Running";
         }
 
-        [Authorize(Roles = "Root")]
+        [Authorize(Roles = "Root, Administrador")]
         [ServiceFilter(typeof(FiltersMid))]
-        [HttpPut("PutActualizarEmpresa")]
+        [HttpPut("PutActualizarUsuarios")]
         public string PutActualizarUsuarios()
         {
             return "Running";
@@ -56,7 +56,7 @@ namespace Farmacias.Controllers
 
         [Authorize(Roles = "Root")]
         [ServiceFilter(typeof(FiltersMid))]
-        [HttpDelete("DeleteEmpresa")]
+        [HttpDelete("DeleteActualizarUsuarios")]
         public string DeleteUsuarios()
         {
             return "Running";

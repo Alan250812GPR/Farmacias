@@ -17,7 +17,6 @@ namespace Farmacias.Controllers
             _mediator = mediator;
         }
 
-        //[ServiceFilter(typeof(FiltersMid))]
         [HttpGet]
         public string Get()
         {
