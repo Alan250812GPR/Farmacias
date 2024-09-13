@@ -1,6 +1,9 @@
 using Farmacias.Data;
 using Farmacias_Aplication.Filters;
+using Farmacias_Aplication.Handlers;
 using Farmacias_Aplication.Middleware;
+using Farmacias_Infrastructure.Queries;
+using Farmacias_Models.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -45,16 +48,16 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-var connectionString = builder.Configuration.GetConnectionString("bsrr-back");
+var connectionString = builder.Configuration.GetConnectionString("Farmacias");
 builder.Services.AddDbContext<dbcontextFarmacias>(options => options.UseMySql(connectionString, ServerVersion.Parse("5.7")));
 
 builder.Services.AddScoped<FiltersMid>();
 
 builder.Services.AddMediatR(typeof(Program).Assembly);
 //Handlers:
-/*
-builder.Services.AddScoped<IRequestHandler<CreateBannerCommand, bool>, CreateBannerCommandHandler>();
-*/
+builder.Services.AddScoped<IRequestHandler<GetByUserQuery, jwtModel>, GetUserByNameHandler>();
+
+
 //JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

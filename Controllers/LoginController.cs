@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using Farmacias_Domain.Interfaces;
+using Farmacias_Infrastructure.Queries;
+using Farmacias_Models.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmacias.Controllers
@@ -15,11 +18,24 @@ namespace Farmacias.Controllers
         }
 
         //[ServiceFilter(typeof(FiltersMid))]
-        //[Authorize(Roles = "Super Admin")]
         [HttpGet]
         public string Get()
         {
             return "Running";
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<jwtModel>> GetByUser([FromBody] GetUserByUserNameInterface userNameInterface)
+        {
+            var query = new GetByUserQuery(userNameInterface);
+            var userItem = await _mediator.Send(query);
+
+            if (userItem == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userItem);
         }
     }
 }
