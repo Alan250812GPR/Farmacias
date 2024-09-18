@@ -1,8 +1,8 @@
 using Farmacias.Data;
 using Farmacias_Aplication.Filters;
-using Farmacias_Aplication.Handlers;
+using Farmacias_Aplication.Handlers.Login;
 using Farmacias_Aplication.Middleware;
-using Farmacias_Infrastructure.Queries;
+using Farmacias_Infrastructure.Queries.Login;
 using Farmacias_Models.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

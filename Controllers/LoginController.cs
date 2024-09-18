@@ -1,4 +1,4 @@
-﻿using Farmacias_Domain.Interfaces;
+﻿using Farmacias_Domain.Interfaces.Login;
 using Farmacias_Infrastructure.Queries;
 using Farmacias_Models.Models;
 using MediatR;
